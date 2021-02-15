@@ -73,8 +73,6 @@ using namespace std;
 
 //Pointers as function returns
 //Function pointers
-
-
 // int Add(int a, int b) {
 // 	return a + b;
 // }
@@ -84,9 +82,15 @@ using namespace std;
 // 	c = (*p)(2, 5);
 // 	cout << c;
 
+//uses of function pointers
+// void A() {printf("Hello world");}
+// void B(void (*ptr)()) {ptr();}
+// void(*p)() = A;
+// 	B(p);
 
-
+//Memory leaks->inproper use of the heap memory that is unreferenced heap memory
 int main() {
+
 
 	return 0;
 }
