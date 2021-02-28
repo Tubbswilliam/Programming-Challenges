@@ -1,4 +1,5 @@
-//After learning pointers i did linked list to understand clearly their functionality
+//After learning pointers i did linked list to understand clearly their functionality
+
 /*
 //The code below shows how to create a node..insert it at the head of the list
 //and print the elements from the list
@@ -217,6 +218,8 @@ int main() {
 
 */
 
+/*
+
 //Reversal of linked list using recursion
 #include<bits/stdc++.h>
 using namespace std;
@@ -282,5 +285,48 @@ int main() {
 	Reverse_rec(head);
 
 
+	return 0;
+}*/
+
+
+//Circular linked list
+#include <bits/stdc++.h>
+using namespace std;
+struct Node {
+	int data;
+	struct Node *next;
+};
+Node* head = NULL;
+
+void insert(int data) {
+	Node *newnode = new Node;
+	Node *ptr = head;
+	newnode->data = data;
+	newnode->next = head;
+
+	if (head != NULL) {
+		while (ptr->next != head)
+			ptr = ptr->next;
+		ptr->next = newnode;
+	} else
+		newnode->next = newnode;
+	head = newnode;
+}
+void display() {
+	Node* ptr;
+	ptr = head;
+	do {
+		cout << ptr->data << " ";
+		ptr = ptr->next;
+	} while (ptr != head);
+}
+int main() {
+	insert(13);
+	insert(17);
+	insert(87);
+	insert(92);
+	insert(39);
+	cout << "The circular linked list is: ";
+	display();
 	return 0;
 }
