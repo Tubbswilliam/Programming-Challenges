@@ -15,6 +15,26 @@ Node*createNode(int key) {
 	return node;
 }
 
+//Implementing the search algorithm.
+//The search algorithm should return the deepest node in the tree.
+Node*search(Node*root, int key) {
+	if (root == NULL) {return NULL;}
+	queue<Node*>q;
+	Node*out = NULL;
+	q.push(root);
+
+	while (!q.empty()) {
+		Node*temp = q.front();
+		q.pop();
+		if (temp->key == key) {
+			out = temp;
+			cout << "Present" << endl;
+		}
+		if (temp->left)q.push(temp->left);
+		if (temp->right)q.push(temp->right);
+	}
+	return out;
+}
 
 
 int main() {
@@ -25,7 +45,6 @@ int main() {
 	root->left->right = createNode(9);
 	root->right->left = createNode(10);
 	root->right->right = createNode(12);
-
-	cout << root->left->key;
+	Node* node = search(root, 9);
 	return 0;
 }
