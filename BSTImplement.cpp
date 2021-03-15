@@ -36,6 +36,36 @@ Node*search(Node*root, int key) {
 	return out;
 }
 
+//Node insertion in the binary tree
+void insert(Node**root, int key) {
+	Node *nodetoinsert = createNode(key);
+	if (*root == NULL) {
+		*root = nodetoinsert;
+		return;
+	}
+//Assuming that the root node is already present
+	queue<Node*>q;
+	q.push(*root);
+
+	while (!q.empty()) {
+		Node *temp = q.front();
+		q.pop();
+		if (temp->left == NULL) {
+			temp->left = nodetoinsert;
+			return;
+		}
+		else {
+			q.push(temp->left);
+		}
+		if (temp->right == NULL) {
+			temp->right = nodetoinsert;
+			return;
+		}
+		else {
+			q.push(temp->right);
+		}
+	}
+}
 
 int main() {
 	root = createNode(3);
@@ -46,5 +76,7 @@ int main() {
 	root->right->left = createNode(10);
 	root->right->right = createNode(12);
 	Node* node = search(root, 9);
+	insert(&root, 11);
+	cout << root->key;
 	return 0;
 }
