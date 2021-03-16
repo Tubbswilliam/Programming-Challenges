@@ -17,7 +17,7 @@ void bst() {
 		cin >> item;
 		p->data = item;
 		p->left = NULL;
-		P->right = NULL;
+		p->right = NULL;
 
 		if (i == 0)root = p;
 		else {
@@ -48,5 +48,7 @@ void bst() {
 }
 
 int main() {
+	bst();
+
 	return 0;
 }
