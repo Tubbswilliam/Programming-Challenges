@@ -2,9 +2,10 @@
 using namespace std;
 //As usual we have to create the tree
 struct Node {
-	int data;
+	int key;
 	Node*left;
 	Node*right;
+	int height;
 };
 //Function to create a new node
 Node* newNode(int key) {
@@ -49,7 +50,7 @@ Node* leftRotate(Node* x) {
 	Node*T2 = y->left;
 	//rotate
 	y->left = x;
-	x->left = T2;
+	x->right = T2;
 
 	//updating the new heights
 	x->height = max(height(x->left), height(x->right)) + 1;
@@ -62,7 +63,7 @@ Node* leftRotate(Node* x) {
 //implement the balancng factor
 int getBalance(Node* N) {
 	if (N == NULL)return 0;
-	return height(N->left) - height(N->right);
+	return (height(N->left)) - (height(N->right));
 }
 
 //Implement a helper function to insert a new node
@@ -114,6 +115,16 @@ void preorder(Node*root) {
 }
 
 int main() {
+	Node *root = NULL;
+	root = insert(root, 3);
+	root = insert(root, 2);
+	root = insert(root, 6);
+	root = insert(root, 12);
+	root = insert(root, 10);
+	root = insert(root, 9);
+	root = insert(root, 7);
 
+	cout << "Preoder traversal of the Avl tree is : " << endl;
+	preorder(root);
 	return 0;
 }
