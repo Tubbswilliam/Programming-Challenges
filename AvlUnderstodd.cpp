@@ -66,7 +66,52 @@ int getBalance(Node* N) {
 }
 
 //Implement a helper function to insert a new node
+Node* insert(Node*node, int key) {
+	//normal BST insertion
+	if (node == NULL)return (newNode(key));
+	if (key < node->key)node->left = insert(node->left, key);
+	else if (key > node->key)node->right = insert(node->right, key);
+	else //That is if the key and nod->key are equal
+		return node;
 
+	//updating the height of the ancestor of the node
+	node->height = 1 + max(height(node->left), height(node->right));
+
+	//Balancing factor of this node ancestor
+	int balance = getBalance(node);
+	//If the node is unbalance then 4 cases have to be checked
+	//left left case
+	if (balance > 1 && key < node->left->key)return rightRotate(node);
+
+	//right right
+	if (balance < -1 && key > node->right->key)return leftRotate(node);
+
+	//left right case
+	if (balance > 1 && key > node->left->key) {
+		node->left = leftRotate(node->left);
+		return rightRotate(node);
+	}
+
+	//Right left case
+	if (balance < -1 && key < node->right->key) {
+		node->right = rightRotate(node->right);
+		return leftRotate(node);
+	}
+	//Return the unchanged node pointer
+	return node;
+}
+
+//Function to print the preorder traversal of the tree and
+//the height of the tree
+
+void preorder(Node*root) {
+	if (root != NULL) {
+		cout << root->key << " ";
+		preorder(root->left);
+		preorder(root->right);
+	}
+
+}
 
 int main() {
 
