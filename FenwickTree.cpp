@@ -28,5 +28,19 @@ def increase(int i, int delta):
 //You can create a Fenwick tree initialized with zeros,
 //or you can convert an existing array into the Fenwick form.
 struct FenwickTree {
-	//Binary indexed tree
+	vector<int>bit;//Binary indexed tree
+	int n;
+
+	FenwickTree(int n) {
+		this->n = n;
+		bit.assign(n, 0);
+	}
+	FenwickTree(vector<int>a): FenwickTree(a.size()) {
+		for (size_t i = 0; i < a.size(); i++)
+			add(i, a[i]);
+	}
+
+	//Then we need to implement the sum operation
+	//Afterwards then the update operation
+
 };
