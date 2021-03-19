@@ -41,6 +41,16 @@ struct FenwickTree {
 	}
 
 	//Then we need to implement the sum operation
+	int sum(int r) {
+		int ret = 0;
+		for (; r > 0; r = (r & (r + 1)) - 1)
+			ret += bit[r];
+		return ret;
+	}
+	//Sum operation within a certain range for example L to R
+	int sum(int l, int r) {
+		return sum(r) - sum(l - 1);
+	}
 	//Afterwards then the update operation
 
 };
