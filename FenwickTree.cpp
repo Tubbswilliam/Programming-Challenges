@@ -52,5 +52,9 @@ struct FenwickTree {
 		return sum(r) - sum(l - 1);
 	}
 	//Afterwards then the update operation
+	void add(int idx, int delta) {
+		for (; idx < n; idx = idx | (idx + 1))
+			bit[idx] += delta;
+	}
 
 };
