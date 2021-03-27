@@ -90,10 +90,31 @@ int main() {
 
 
 
+//The main solution that i presented
 
+#include<bits/stdc++.h>
+using namespace std;
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n, k, p;
+		cin >> n;
+		int arr[n];
+		cin >> k;
+		for (int i = 0; i < n; i++) {
+			cin >> arr[i];
+		}
+		k %= n;
+		for (int i = 0; i < n; i++) {
+			p = arr[(i + (n - k)) % n];
+			cout << p << " ";
+		}
+		cout << "\n";
 
-
-
+	}
+	return 0;
+}
 
 
 
