@@ -28,6 +28,12 @@ void leftRotateOne(int arr[], int n) {
 	}
 	arr[n - 1] = temp;
 }
+
+void rotatebyK(int arr[], int k, int n) {
+	for (int i = 0; i < k; i++) {
+		leftRotateOne(arr, n);
+	}
+}
 void printArray(int arr[], int n) {
 	for (int i = 0; i < n; i++) {
 		cout << arr[i] << " ";
@@ -35,13 +41,14 @@ void printArray(int arr[], int n) {
 }
 
 int main() {
-	int n;
+	int n, k;
 	cin >> n;
 	int arr[n];
 	for (int i = 0; i < n; i++) {
 		cin >> arr[i];
 	}
-	leftRotateOne(arr, n);
+	//leftRotateOne(arr, n);
+	rotatebyK(arr, 2, n);
 	printArray(arr, n);
 
 	return 0;
