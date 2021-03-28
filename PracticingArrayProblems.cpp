@@ -99,7 +99,7 @@ using namespace std;
 bool hasPair(int arr[], int n, int sum) {
 	//First we find the pivot point
 	int i;
-	for (int i = 0; i < n - 1; i++) {
+	for (i = 0; i < n - 1; i++) {
 		if (arr[i] > arr[i + 1])
 			break;
 	}
@@ -108,8 +108,11 @@ bool hasPair(int arr[], int n, int sum) {
 
 	//Move either r or l till the meet.
 	while (l != r) {
-		if (arr[l] + arr[r] == sum)
+		if (arr[l] + arr[r] == sum) {
+			cout << "The two positions are: ";
+			cout << l << " and " << r << endl;
 			return true;
+		}
 		if (arr[l] + arr[r] < sum)
 			l = (l + 1) % n;
 		else
