@@ -56,7 +56,7 @@ int main() {
 
 */
 
-
+/*
 //A pair with given sum
 #include<bits/stdc++.h>
 using namespace std;
@@ -86,6 +86,47 @@ int main() {
 	}
 	hasPair(arr, n, 11);
 
+
+	return 0;
+}
+
+*/
+
+//Finding a pair with a given sum in a rotated array
+#include<bits/stdc++.h>
+using namespace std;
+
+bool hasPair(int arr[], int n, int sum) {
+	//First we find the pivot point
+	int i;
+	for (int i = 0; i < n - 1; i++) {
+		if (arr[i] > arr[i + 1])
+			break;
+	}
+	int l = (i + 1) % n; //l is always the smallest element
+	int r = i; //r is always the largest element
+
+	//Move either r or l till the meet.
+	while (l != r) {
+		if (arr[l] + arr[r] == sum)
+			return true;
+		if (arr[l] + arr[r] < sum)
+			l = (l + 1) % n;
+		else
+			r = (n + r - 1) % n;
+	}
+
+	return false;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	int arr[n];
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+	hasPair(arr, n, 17);
 
 	return 0;
 }
