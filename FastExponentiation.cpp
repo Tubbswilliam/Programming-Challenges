@@ -1,3 +1,5 @@
+//This algorithm will reduce the time complexity from o(N)
+//to log(N)
 #include<bits/stdc++.h>
 using namespace std;
 int fastExpo(int num, int pow) {
