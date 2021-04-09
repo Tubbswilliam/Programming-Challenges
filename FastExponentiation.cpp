@@ -25,7 +25,7 @@ int main() {
 
 */
 
-
+/*
 //Modular exponentiation
 #include<bits/stdc++.h>
 using namespace std;
@@ -48,3 +48,49 @@ int main() {
 	cout << "The exponentiation of the number is: " << modExpo(n, pow, mod);
 	return 0;
 }
+*/
+
+//Modular exponentiation using Bitmasking technique
+//o(log N) and space O(1)
+#include<bits/stdc++.h>
+using namespace std;
+long long fastExpo(long long num, long long pow) {
+	long long res = 1;
+	while (pow > 0) {
+		if (pow & 1) {
+			res = res * num;
+		}
+		num = num * num;
+		pow = pow >> 1;
+	}
+	return res;
+}
+int main() {
+	cout << fastExpo(3, 5);
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
