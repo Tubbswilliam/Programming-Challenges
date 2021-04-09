@@ -54,19 +54,19 @@ int main() {
 //o(log N) and space O(1)
 #include<bits/stdc++.h>
 using namespace std;
-long long fastExpo(long long num, long long pow) {
+long long fastmodExpo(long long num, long long pow, long long mod) {
 	long long res = 1;
 	while (pow > 0) {
 		if (pow & 1) {
-			res = res * num;
+			res = (res * num) % mod;
 		}
-		num = num * num;
+		num = (num * num) % mod;
 		pow = pow >> 1;
 	}
 	return res;
 }
 int main() {
-	cout << fastExpo(3, 5);
+	cout << fastmodExpo(3, 200, 50);
 	return 0;
 }
 
