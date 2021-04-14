@@ -23,7 +23,7 @@ int main() {
 }
 
 
-*/
+
 //In order to optimize it...if n is a composite number then
 //there is a prime divisor below sqrt(n)
 
@@ -49,3 +49,26 @@ int main() {
 	return 0;
 }
 
+*/
+
+//Prime factorization using sieve in O(log(n))
+#include<bits/stdc++.h>
+using namespace std;
+
+int ar[1000000]
+void sieve() {
+	int maxN = 1000000;
+	for (int i = 1; i <= maxN; i++)ar[i] = -1;
+	for (int i = 2; i <= maxN; i++)
+		if (ar[i] == -1) {
+			for (int j = i; j < maxN; j += i) {
+				if (ar[j] == -1)
+					ar[j] = i;
+			}
+		}
+}
+
+int main() {
+
+	return 0;
+}

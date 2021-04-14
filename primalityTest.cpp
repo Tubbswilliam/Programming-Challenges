@@ -37,3 +37,5 @@ int main() {
 
 	return 0;
 }
+
+//HackerRank problem on primality test L and R

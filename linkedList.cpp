@@ -217,9 +217,6 @@ int main() {
 
 
 */
-
-/*
-
 //Reversal of linked list using recursion
 #include<bits/stdc++.h>
 using namespace std;
@@ -286,9 +283,9 @@ int main() {
 
 
 	return 0;
-}*/
+}
 
-
+/*
 //Circular linked list
 #include <bits/stdc++.h>
 using namespace std;
@@ -330,3 +327,4 @@ int main() {
 	display();
 	return 0;
 }
+*/

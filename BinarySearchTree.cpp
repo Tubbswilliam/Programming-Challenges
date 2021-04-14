@@ -7,15 +7,15 @@ struct Node {
 	Node*right;
 };
 
-void bst() {
-	int n, i, item;
+void bst(int arr[], int n) {
+	int i;
 	Node*p, *q, *root;
-	cout << "Enter the number of nodes." << endl;
-	cin >> n;
+	//cout << "Enter the number of nodes." << endl;
+	//cin >> n;
 	for (i = 0; i < n; i++) {
 		p = new Node;
-		cin >> item;
-		p->data = item;
+		//cin >> item;
+		p->data = arr[i];
 		p->left = NULL;
 		p->right = NULL;
 
@@ -48,7 +48,16 @@ void bst() {
 }
 
 int main() {
-	bst();
+	int n;
+	cin >> n;
+	int arr[n];
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+	bst(arr, n);
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
 
 	return 0;
 }
