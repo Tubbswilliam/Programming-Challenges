@@ -190,3 +190,88 @@ int main() {
 
 	return 0;
 }
+
+//Lazy propagation
+//In the worst the range update using the before method would take
+//O(nlog(n)) when updating the whole range but the lazy propagation
+//will take O(log(n))
+//The main idea of the lazy propagation is to update only when needed
+//Only update if the point lies within the query range
+
+#include<bits/stdc++.h>
+using namespace std;
+int arr[100001];
+int st[400004], lazy[400004];
+
+void build(int si, int ss, int se) {
+	if (ss == se) {
+		st[si] == arr[ss];
+		return;
+	}
+	int mid = (ss + se) / 2;
+	build(2 * si, ss, mid);
+	build(2 * si + 1, mid + 1, se);
+
+	st[si] = st[2 * si] + st[2 * si + 1];
+}
+
+int query(int si, int ss, int se, int qs, int qe) {
+	if (lazy[si] != 0) {
+		int dx = lazy[si];
+		lazy[si] = 0;
+		st[si] += dx * (se - ss + 1);
+		if (ss != se)
+			lazy[2 * si] += dx, lazy[2 * si + 1] += dx;
+	}
+	if (ss > qe || se < qs)return 0;
+	if (ss >= qs && se <= qe)
+		return st[si];
+	int mid = (ss + se) / 2;
+	return query(2 * si, ss, mid, qs, qe) + query(2 * si + 1, mid + 1, se, qs, qe);
+
+}
+
+void update(int si, int ss, int se, int qs, int qe, int val) {
+	if (lazy[si] != 0) {
+		int dx = lazy[si];
+		lazy[si] = 0;
+		st[si] += dx * (se - ss + 1);
+
+		if (ss != se)
+			lazy[2 * si] += dx, lazy[2 * si + 1] += dx;
+	}
+
+	if (ss > qs || se < qs)return;
+
+	if (ss >= qs && se <= qe) {
+		int dx = (se - ss + 1) * val;
+		st[si] += dx;
+		if (ss != se)
+			lazy[2 * si] += val, lazy[2 * si + 1];
+		return;
+	}
+	int mid = (ss + se) / 2;
+	update(2 * si, ss, mid, qs, qe, val);
+	update(2 * si + 1, mid + 1, se, qs, qe, val);
+
+	st[si] = st[2 * si] + st[2 * si + 1];
+}
+
+int main() {
+	int n, q, code, l, r, val;
+	cin >> n >> q;
+	for (int i = 1; i <= n; i++)cin >> arr[i];
+	while (q--) {
+		cin >> code;
+		if (code == 1) {
+			cin >> l >> r;
+			cout << query(1, 1, n, l, r) << endl;
+		}
+		else {
+			cin >> l >> r;
+			update(1, 1, n, l, r, val);
+		}
+
+	}
+	return 0;
+}
