@@ -1,4 +1,4 @@
-
+/*
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -23,3 +23,45 @@ int main() {
 }
 
 
+*/
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+bool comp(const pair<int, int>&a, const pair<int, int>&b) {
+	if (a.first == b.second)return a.second > b.second;
+	return a.first < b.first;
+}
+double round(double ans, int x) {
+	double mul = pow(10, x);
+	return round(ans * mul) / mul;
+}
+void solve() {
+	int n;
+	cin >> n;
+	vector<pair<int, int>>v(n);
+	for (int i = 0; i < n; i++)
+		cin >> v[i].first >> v[i].second;
+	//sort the vector as required
+	sort(v.begin(), v.end(), comp);
+	//Calculate the distance
+	double ans = 0.00;
+	for (int i = 1; i < n; i++) {
+		ans += sqrt(((v[i].first - v[i - 1].first) * (v[i].first - v[i - 1].first))
+		            + ((v[i].second - v[i - 1].second) * (v[i].second - v[i - 1].second))
+		           );
+	}
+	//cout << ans << endl;
+	cout << round(ans, 2) << endl;
+}
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		solve();
+	}
+	return 0;
+}
