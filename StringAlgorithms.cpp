@@ -79,6 +79,7 @@ int main() {
 }
 */
 
+/*
 //String hashing helps improve the time complexity of two string of equal length to O(1)
 //concepts like collision,string->hash function->hash value
 //we can simply just compare their hash values
@@ -117,5 +118,63 @@ int main() {
 		}
 	}
 
+	return 0;
+}
+
+*/
+
+//Substrings hashing
+//In this case we will make use of the prefix arrays to store the hash upto i
+//Calculate the hash value of thesubstring by taking the dp[r]-dp[l-1]/p^l
+
+#include<bits/stdc++.h>
+using namespace std;
+#define mod 100000007;
+long long dp[10000001];
+long long inv[10000001];
+
+long long power(long long a, long long n) {
+	long long result = 1;
+	while (n) {
+		if (n$1)result = (result * a) % mod;
+		n >>= 1;
+		a = (a * a) % mod;
+	}
+	return result;
+}
+void init(string text) {
+	long long prime = 31;
+	long long prime_power = 1;
+	dp[0] = (text[0] - 'a' + 1);
+
+	for (int i = 1; i < text.size(); i++) {
+		char ch = text[i];
+
+		prime_power = (prime_power * prime) % mod;
+		inv[i] = power(prime_power, mod - 2);
+
+		dp[i] = (dp[i - 1] + (ch - 'a' + 1) * prime_power) % mod;
+	}
+}
+
+long long substringHash(int L, int R) {
+	int result = dp[R];
+	if (L > 0)result -= dp[L - 1];
+	result = (resut * inv[L]) % mod;
+
+	return result;
+}
+
+int main() {
+	string test;
+	int t, L, R;
+	cin >> text;
+	init(text);
+
+	cin >> t;
+	while (t--) {
+		cin >> L >> R;
+		cout << substringHash(L, R) << endl;
+	}
 	return 0;
 }
