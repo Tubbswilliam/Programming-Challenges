@@ -78,8 +78,9 @@ int main() {
 	return 0;
 }
 */
-
 /*
+
+
 //String hashing helps improve the time complexity of two string of equal length to O(1)
 //concepts like collision,string->hash function->hash value
 //we can simply just compare their hash values
@@ -121,7 +122,7 @@ int main() {
 	return 0;
 }
 
-*/
+*
 
 //Substrings hashing
 //In this case we will make use of the prefix arrays to store the hash upto i
@@ -176,5 +177,77 @@ int main() {
 		cin >> L >> R;
 		cout << substringHash(L, R) << endl;
 	}
+	return 0;
+}
+
+*/
+
+
+
+/*
+//Spoj Problem
+Write a program that finds all
+occurences of a given pattern in a given input string. This is often referred to as finding a needle in a haystack.
+
+The program has to detect all occurences of the needle in the haystack.
+ It should take the needle and the haystack as input,
+ and output the positions of each occurence, as shown below. The suggested
+implementation is the KMP algorithm, but this is not a requirement. However, a naive approach will probably exceed the time limit, whereas other algorithms are more complicated... The choice is yours.
+*/
+
+
+
+//We can use the rabin-Karp algorithm to find all the occurrences of a
+//certain pattern in a word.
+
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define prime 119
+//Function to calculate the hashValues
+ll hashValue(string text, int n) {
+	ll result = 0;
+	for (int i = 0; i < n; i++) {
+		result += ((ll)text[i] * (ll)pow(prime, i));
+	}
+	return result;
+}
+
+//Recalculate hash value when rolling or moving the window
+ll calculatenewHash(string text, int oldIndex, int newIndex, ll oldHash, int patlength) {
+	ll newHash = oldHash - text[oldIndex];
+	newHash /= prime;
+	newHash += (ll)(text[newIndex] * (ll)pow(prime, patlength - 1));
+	return newHash;
+}
+
+//Check equal
+bool checkEqual(string s1, string s2, int start1, int e1, int start2, int e2) {
+	if (e1 - start1 != e2 - start2)return false;
+	while (start1 <= e1 and start2 <= e2) {
+		if (s1[start1] != s2[start2])return false;
+		start1++;
+		start2++;
+	}
+	return true;
+}
+
+int main() {
+	string str = "ababcabdab";
+	string pattern = "abd";
+
+	ll patterHash = hashValue(pattern, pattern.length());
+	ll strHash = hashValue(str, pattern.length());
+
+	for (int i = 0; i <= str.length() - pattern.length(); i++) {
+		if (patterHash == strHash and
+		        checkEqual(str, pattern, i, i + pattern.length() - 1, 0, pattern.length() - 1))
+			cout << i << endl;
+		if (i < str.length() - pattern.length()) {
+			strHash = calculatenewHash(str, i, i + pattern.length(), strHash, pattern.length());
+		}
+	}
+
 	return 0;
 }
