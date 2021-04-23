@@ -271,6 +271,38 @@ void kmp(string text, string pattern) {
 		if (pattern[i] == pattern[j])j++;
 		lps[i] = j;
 	}
+
+	//Matching the text and pattern
+	int i = 0, j = 0;
+	while (i < n) {
+		if (pattern[j] == text[i]) {
+			j++;
+			i++;
+		}
+		if (j == m) {
+			cout << "Found the pattern at: " << (i - j) << endl;
+			j = lps[j - 1];
+		}
+		else if (i < n && pattern[j] != text[i]) {
+			if (j != 0)
+				j = lps[j - 1];
+			else
+				i = i + 1;
+		}
+
+	}
+
+}
+
+int main() {
+	string text, pattern;
+	cout << "Enter the text you want to find the pattern in : " << endl;
+	getline(cin, text);
+	cout << "Enter the pattern you want to find : " << endl;
+	getline(cin, pattern);
+	kmp(text, pattern);
+
+	return 0;
 }
 
 /*
