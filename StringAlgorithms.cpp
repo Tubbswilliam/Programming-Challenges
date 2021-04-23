@@ -196,7 +196,7 @@ implementation is the KMP algorithm, but this is not a requirement. However, a n
 */
 
 
-
+/*
 //We can use the rabin-Karp algorithm to find all the occurrences of a
 //certain pattern in a word.
 
@@ -251,3 +251,61 @@ int main() {
 
 	return 0;
 }
+
+
+*/
+
+//Knut-morris-Pratt Algorithm
+//it completely depends on the prefix and suffix functions
+//The longest prefix array(knowledge centre)
+#include<bits/stdc++.h>
+using namespace std;
+
+void kmp(string text, string pattern) {
+	//Building the longest prefix suffix array(lps)
+	int m = pattern.length(), n = text.length();
+	vector<int>lps(m, 0);
+	for (int i = 1; i < m; i++) {
+		int j = lps[i - 1];
+		while (j > 0 && pattern[i] != pattern[j])j = lps[j - 1];
+		if (pattern[i] == pattern[j])j++;
+		lps[i] = j;
+	}
+}
+
+/*
+//Z algorithm
+//This algorithm is used to find the longest substring at k which is
+//also the prefix of the string.
+
+#include<bits/stdc++.h>
+using namespace std;
+int z[1000];
+
+void z_function(string s) {
+	int n = s.size();
+	z[0] = 0;
+	for (int i = 1; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			if (s[j - i] == s[j]) {
+				z[i]++;
+			}
+			else {
+				break;
+			}
+		}
+	}
+
+
+}
+
+
+int main() {
+
+	return 0;
+}
+
+
+
+//Right most segment match[L,R]
+*/
