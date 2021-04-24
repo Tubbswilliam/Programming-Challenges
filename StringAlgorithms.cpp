@@ -255,6 +255,7 @@ int main() {
 
 */
 
+/*
 //Knut-morris-Pratt Algorithm
 //it completely depends on the prefix and suffix functions
 //The longest prefix array(knowledge centre)
@@ -304,7 +305,7 @@ int main() {
 
 	return 0;
 }
-
+*/
 /*
 //Z algorithm
 //This algorithm is used to find the longest substring at k which is
@@ -341,3 +342,19 @@ int main() {
 
 //Right most segment match[L,R]
 */
+
+//Trie datastructure
+#include<bits/stdc++.h>
+using namespace std;
+struct Trie {
+	struct Trie*children[26];
+	bool isEndofword;
+};
+struct Trie* getNode(void) {
+	struct Trie*pnode = new Trie;
+	pnode->isEndofword = false;
+	for (int i = 0; i < 26; i++) {
+		pnode->children[i] = NULL;
+	}
+	return pnode;
+}
