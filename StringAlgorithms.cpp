@@ -385,3 +385,14 @@ bool search(struct Trie*root, string s) {
 	}
 	return (p != NULL && p->isEndofword);
 }
+
+int main() {
+	struct Trie*root = getNode();
+	insert(root, "abc");
+	insert(root, "abcda");
+
+	cout << search(root, "a") << endl;
+	cout << search(root, "abc") << endl;
+
+	return 0;
+}
