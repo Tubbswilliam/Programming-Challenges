@@ -358,3 +358,30 @@ struct Trie* getNode(void) {
 	}
 	return pnode;
 }
+
+
+void insert(Trie *root, string s) {
+	struct Trie *p = root;
+	int n = s.length();
+	for (int i = 0; i < n; i++) {
+		int k = s[i] - 'a';
+		if (!p->children[k]) {
+			p->children[k] = getNode();
+		}
+		p = p->children[k];
+	}
+	p->isEndofword = true;
+}
+
+bool search(struct Trie*root, string s) {
+	struct Trie *p = root;
+	int n = s.length();
+	for (int i = 0; i < n; i++) {
+		int k = s[i] - 'a';
+		if (p->children[k] == NULL) {
+			return false;
+		}
+		p = p->children[k];
+	}
+	return (p != NULL && p->isEndofword);
+}
