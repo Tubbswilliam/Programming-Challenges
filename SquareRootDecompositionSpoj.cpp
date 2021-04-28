@@ -37,12 +37,13 @@ Given an array of integers and queries of the form L,R,
 how many elements exist in the given range?
 */
 
+/*
 //Basic template of the Mo's Algorithm
 
 for (int i = 0; i < q; i++) {
-	int L = Q[i]; //l
-	int R = Q[i]; //r
-	int idx = Q[i]; //i
+	int L = Q[i].l; //l
+	int R = Q[i].r; //r
+	int idx = Q[i].i; //i
 
 	//extending the range
 	while (MR < R)MR++, add(MR);
@@ -53,4 +54,92 @@ for (int i = 0; i < q; i++) {
 	while (ML < L)remove(ML), ML++;
 
 	ans[idx] = count;
+}
+
+*/
+
+//Solution to the spoj Problem
+#include<bits/stdc++.h>
+using namespace std;
+#define BLOCK 555
+
+struct query {
+	int l;
+	int r;
+	int i;
+};
+
+query Q[200001];
+int ar[30001];
+int ans[200001];
+int freq[1000001];
+int cnt = 0; //counting the number of unique elements
+
+bool comp(query a, query b) {
+	if (a.l / BLOCK != b.l / BLOCK)
+		return a.l / BLOCK < b.l / BLOCK;
+	return a.r < b.r;
+
+}
+
+void add(int pos) {
+	freq[ar[pos]]++;
+	if (freq[ar[pos]] == 1)
+		cnt++;
+
+}
+
+void remove(int pos) {
+	freq[ar[pos]]--;
+	if (freq[ar[pos]] == 0)
+		cnt--;
+}
+
+int main() {
+#ifndef ONLINE_JUDGE
+	//for getting input from input.txt
+	freopen("input.txt", "r", stdin);
+	// for writing output to output.txt
+	freopen("output.txt", "w", stdout);
+#endif
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+
+	int n, q;
+	cin >> n;
+
+	for (int i = 0; i < n; i++)
+		cin >> ar[i];
+	cin >> q;
+	for (int i = 0; i < q; i++) {
+		cin >> Q[i].l >> Q[i].r;
+		Q[i].i = i, Q[i].l--, Q[i].r--;//Reducing L and R cos of 1 indexing from the question
+	}
+
+	sort(Q, Q + q, comp);
+
+//Now Mo's algorithm
+	int ML = 0, MR = -1;
+	for (int i = 0; i < q; i++) {
+		int L = Q[i].l; //l
+		int R = Q[i].r; //r
+		int idx = Q[i].i; //i
+
+		//extending the range
+		while (MR < R)MR++, add(MR);
+		while (ML > L)ML--, add(ML);
+
+		//reducing the range
+		while (MR > R)remove(MR), MR--;
+		while (ML < L)remove(ML), ML++;
+
+		ans[idx] = cnt;
+	}
+
+	for (int i = 0; i < q; i++)
+		cout << ans[i] << "\n";
+
+
+	return 0;
 }
