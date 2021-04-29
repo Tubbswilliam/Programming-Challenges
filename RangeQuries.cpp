@@ -43,6 +43,7 @@ int find(int k) {
 using namespace std;
 
 int arr[1000001], seg[4 * 1000001];
+int lazy[100001];
 
 void build(int ind, int low, int high) {
 	if (low == high) {
@@ -55,6 +56,8 @@ void build(int ind, int low, int high) {
 	seg[ind] = max(seg[2 * ind + 1], seg[2 * ind + 2]);
 
 }
+
+/*
 
 int query(int ind, int low, int high, int l, int r) {
 	if (low >= l && high <= r)
@@ -71,6 +74,7 @@ int query(int ind, int low, int high, int l, int r) {
 	return max(left, right);
 
 }
+*/
 
 //This is just point update...updating one point only
 void pointUpdate(int ind, int low, int high, int node, int val) {
@@ -85,6 +89,54 @@ void pointUpdate(int ind, int low, int high, int node, int val) {
 			pointUpdate(2 * ind + 2, mid + 1, high, node, val);
 		seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2]; //In the case you are trying to et the sum
 	}
+}
+
+
+//Lazy propagation useful when updating more than one element in a range
+void rangeupdate(int ind, int low, int high, int l, int r, int val) {
+	if (lazy[ind] != 0) {
+		seg[ind] += (high - low + 1) * lazy[ind];
+		if (low != high) {
+			lazy[2 * ind + 1] += lazy[ind];
+			lazy[2 * ind + 2] += lazy[ind];
+		}
+		lazy[ind] = 0;
+	}
+	if (r < low || l > high || low > high)return;
+
+	if (low >= l && high <= r) {
+		seg[ind] += (high - low + 1) * val;
+
+		if (low != high) {
+			lazy[2 * ind + 1] += lazy[ind];
+			lazy[2 * ind + 2] += lazy[ind];
+		}
+		return;
+	}
+	int mid = (low + high) >> 1;
+	rangeupdate(2 * ind + 1, low, mid, l, r, val);
+	rangeupdate(2 * ind + 2, mid + 1, high, l, r, val);
+	seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2];
+}
+
+int querySum(int ind, int low, int high, int l, int r, val) {
+	if (lazy[ind] != 0) {
+		seg[ind] += (high - low + 1) * lazy[ind];
+		if (low != high) {
+			lazy[2 * ind + 1] += lazy[ind];
+			lazy[2 * ind + 2] += lazy[ind];
+		}
+		lazy[ind] = 0;
+	}
+	if (r < low || l > high || low > high) return 0;
+
+	if (low >= l && high <= r)
+		return seg[ind];
+
+	int mid = (low + high) >> 1;
+
+	return querySum(2 * ind + 1, low, mid, l, r, val) + querySum(2 * ind + 2, mid + 1, high, l, r, val);
+
 }
 
 
