@@ -23,6 +23,19 @@ int sum(int i) {
 }
 
 
+//Binary lifting in fenwick tree
+int find(int k) {
+	int curr = 0, ans = 0, prevsum = 0;
+	for (int i = log2(n); i >= 0; i--) {
+		if (ft[curr + (1 << i)] + prevsum < k) {
+			curr = curr + (1 << i);
+			prevsum += ft[curr];
+		}
+	}
+	return (curr + 1);
+}
+
+
 int main() {
 #ifndef ONLINE_JUDGE
 	//for getting input from input.txt
