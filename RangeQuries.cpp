@@ -72,6 +72,20 @@ int query(int ind, int low, int high, int l, int r) {
 
 }
 
+//This is just point update...updating one point only
+void pointUpdate(int ind, int low, int high, int node, int val) {
+	if (low == high) {
+		seg[low] += val;
+	}
+	else {
+		int mid = (low + high) / 2;
+		if (node <= mid && node >= low)
+			pointUpdate(2 * ind + 1, low, mid, node, val);
+		else
+			pointUpdate(2 * ind + 2, mid + 1, high, node, val);
+		seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2]; //In the case you are trying to et the sum
+	}
+}
 
 
 int main() {
@@ -101,6 +115,8 @@ int main() {
 		cin >> l >> r;
 		cout << query(0, 0, n - 1, l, r) << endl;
 	}
+
+	//pointUpdate(0,0,n-1,node,val)
 	return 0;
 }
 
