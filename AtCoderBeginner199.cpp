@@ -1,3 +1,4 @@
+/*
 //Square Inequality
 #include<bits/stdc++.h>
 using namespace std;
@@ -19,6 +20,46 @@ int main() {
 	int a, b, c;
 	cin >> a >> b >> c;
 	solve(a, b, c);
+
+	return 0;
+}
+
+*/
+
+//Intersection
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	int a[n];
+	int b[n];
+
+	int biggest = -10000000;
+	int smallest = 10000000;
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (int i = 0; i < n; i++) {
+		biggest = max(biggest, a[i]);
+	}
+
+	for (int i = 0; i < n; i++) {
+		cin >> b[i];
+	}
+
+	for (int i = 0; i < n; i++) {
+		smallest = min(smallest, b[i]);
+
+	}
+
+	if ((smallest - biggest) + 1 < 0) {
+		cout << 0 << endl;
+	}
+	else {cout << (smallest - biggest) + 1 << endl;}
+
+
 
 	return 0;
 }
