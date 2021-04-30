@@ -25,7 +25,7 @@ int main() {
 }
 
 */
-
+/*
 //Intersection
 #include<bits/stdc++.h>
 using namespace std;
@@ -64,5 +64,22 @@ int main() {
 	return 0;
 }
 
+*/
 
 
+//RGB COLORING
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main() {
+	int n, m;
+	cin >> n >> m;
+	if (m == 0) {
+		cout << 3 * pow(3, (m - 1)) << endl;
+	} else {
+		cout << 3 * pow(2, m - 2) << endl;//Not complete the proof does not hold
+	}
+
+	return 0;
+}
