@@ -21,3 +21,17 @@ while (!q.empty()) {
         }
     }
 }
+
+
+//In the case where we need to calculate the shortest distance to the node
+if (!used[u]) {
+    cout << "No path!";
+} else {
+    vector<int> path;
+    for (int v = u; v != -1; v = p[v])
+        path.push_back(v);
+    reverse(path.begin(), path.end());
+    cout << "Path: ";
+    for (int v : path)
+        cout << v << " ";
+}
