@@ -17,6 +17,12 @@ void subsize(int node, int par) {
 		}
 	}
 }
+int centroid(int node, int par) {
+	for (int child : ar[node]) {
+		if (child != par && sub[child] > n / 2)return centroid(child, node);
+	}
+	return node;
+}
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -34,8 +40,9 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		cin >> a >> b
 		    ar[a].push_back(b), ar[b].push_back(a);
-		subsize(1, -1);
 	}
+	subsize(1, -1);
+	cout << centroid(1, -1);
 
 
 	return 0;
