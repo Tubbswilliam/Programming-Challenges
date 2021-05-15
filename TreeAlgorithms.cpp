@@ -17,6 +17,7 @@ void subsize(int node, int par) {
 		}
 	}
 }
+//Using dfs to get the centroid
 int centroid(int node, int par) {
 	for (int child : ar[node]) {
 		if (child != par && sub[child] > n / 2)return centroid(child, node);
@@ -36,7 +37,7 @@ int main() {
 	cout.tie(0);
 	int a, b;
 	cin >> n;
-	//Read in the graph
+	//Read in the graph using the adjecency list
 	for (int i = 0; i < n; i++) {
 		cin >> a >> b
 		    ar[a].push_back(b), ar[b].push_back(a);
