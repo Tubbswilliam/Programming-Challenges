@@ -1,3 +1,4 @@
+/*
 //Finding a centroid
 //A centroid is a point that when removed the created connected component component
 //doesn't have size greater than 2 where N is size of the tree.
@@ -45,6 +46,38 @@ int main() {
 	subsize(1, -1);
 	cout << centroid(1, -1);
 
+
+	return 0;
+}
+*/
+
+//level order traversal
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+	vector<vector<int>>levelOrder(Treenode* root) {
+		if (!root)return {};
+		vector<vector<int>>result;
+		queue<Treenode*>Q;
+		Q.push(root);
+		while (!Q.empty()) {
+			int count = Q.size();
+			vector<int>level_nodes;
+			for (int i = 0; i < count; i++) {
+				Treenode* node = Q.front();
+				Q.pop();
+				if (node->left) Q.push(node->left);
+				if (node->right) Q.push(node->right);
+				level_nodes.push_back(node->val);
+			}
+			result.push_back(level_nodes);
+		}
+		return result;
+	}
+};
+int main() {
 
 	return 0;
 }
