@@ -1,0 +1,14 @@
+//Upper_bound
+//lower_bound
+//Binary search
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+	vector<int>ar = {1, 1, 2, 2, 2, 4, 7, 10};
+	int br[] = {2, 3, 5, 7};
+
+	cout << binary_search(ar.begin(), ar.end(), 3);
+	return 0;
+}
