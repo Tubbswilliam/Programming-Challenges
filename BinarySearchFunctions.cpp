@@ -13,5 +13,8 @@ int main() {
 	cout << binary_search(br, br + 4, 5) << endl;
 
 	cout << *upper_bound(ar.begin(), ar.end(), 2) << endl;
+	cout << *upper_bound(br, br + 4, 5) << endl;
+
+	cout << *lower_bound(ar.begin(), ar.end(), 2) << endl;
 	return 0;
 }
