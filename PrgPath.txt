@@ -1,0 +1,28 @@
+**GAME THEORY**
+{
+///Types of Game theory problems /////////////////
+Basic logic deeduction
+Simple simulation
+Dynamic Programming
+Sprague Grundy numbers
+/////////////////
+
+turn based games
+two player games
+perfect information games(both players play optimally)
+
+////Summary /////
+Rules for turn-based perfect information two-player games;
+->The base winning or losing states are defined by the problem.
+->A state is a winning state if there exists at least one losing state reachable 
+from this state.
+->A state is a losing state if all it's reachable states are winning states.
+->if there are states remaining which do not fir these three conditons then that
+state correspond to a draw.
+
+}
+
+*Bitwise operation and logical operation(&,|,^,~)
+*Dynamic programming problems
+fibonacci & counting number of ways problem
+
