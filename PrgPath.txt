@@ -20,6 +20,11 @@ from this state.
 ->if there are states remaining which do not fir these three conditons then that
 state correspond to a draw.
 
+/// Practice problem from codechef //
+Random Game(RANDGAME)
+Lucky Number problem (HP18)
+Yet Another Number Game (NUMGAME)
+Game on a strip (ARRGAME)
 }
 
 *Bitwise operation and logical operation(&,|,^,~)
