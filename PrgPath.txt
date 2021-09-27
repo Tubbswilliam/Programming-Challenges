@@ -19,6 +19,9 @@ from this state.
 ->A state is a losing state if all it's reachable states are winning states.
 ->if there are states remaining which do not fir these three conditons then that
 state correspond to a draw.
+/////////////////////////////////////////////
+///Game of nim////////
+->Choose some simple kind of the games eg if k=1 then k=2...
 
 /// Practice problem from codechef //
 Random Game(RANDGAME)
