@@ -1,3 +1,28 @@
+*NUMBER THEORY*
+part1
+1)Primality test
+2)Prime factorization
+3)Sieve of Eratosthenes
+4)Chinese Remainder Theorem
+5)Binary Exponentiation
+6)Euclid algorithm of GCD
+7)Goldach's Twins and Legendre Conjecture
+8)Finding number of divisors of N
+9)Calculating Binomial Coefficient
+10)Segmented sieve
+11)Modulo inverse
+
+part2
+1)Extended Euclidean Algorithm.
+2)Linear Diophantine equation
+3)Matrix Exponentiation
+4)Fibonacci numbers in O(log n)
+5)Euler Totient Function
+6)Sum of Divisors
+7)Pollard p-1 method
+8)Pollard Rho Algorithm
+
+
 **GAME THEORY**
 {
 ///Types of Game theory problems /////////////////
