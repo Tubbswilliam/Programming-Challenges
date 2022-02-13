@@ -6,7 +6,7 @@ class TreeNode:
 		self.right=None
 
 
-#preorder traversal
+#Recursive preorder traversal
 def preorder(root):
 	#recursive
 	if not root:
@@ -14,3 +14,15 @@ def preorder(root):
 	print(root.data)
 	preorder(root.left)
 	preorder(root.right)
+
+#iterative preorder
+def preorder(root):
+	stack=[root]
+	while stack:
+		currentNode=stack[-1]
+		stack.pop()
+		print(currentNode.data)
+		if currentNode.right:
+			stack.append(currentNode.right)
+		if currentNode.left:
+			stack.append(currentNode.left)
