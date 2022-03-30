@@ -32,3 +32,20 @@ class Tree:
             print(root.data)
             self.traverse_Inorder(root.right)
             
+
+############################################################################################
+#Instance variable and class variable
+
+class Student:
+    school="Technical University"
+    def __init__(self):
+        self.name="William"
+        self.age=21
+        
+        
+s1=Student()
+s2=Student()
+Student.school="MIT" #Changing class variable
+s2.name="Wambua" #changing instance variable
+print(s1.name+" "+s1.school)
+print(s2.name+" "+s2.school)
